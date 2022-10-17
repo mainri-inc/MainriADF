@@ -1,0 +1,10 @@
+{
+	"name": "AzureKeyVaultDelighted",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://mainriKeyVault.vault.azure.net/"
+		}
+	}
+}
