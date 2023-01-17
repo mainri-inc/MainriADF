@@ -38,8 +38,8 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "id",
-									"type": "String"
+									"type": "String",
+									"ordinal": 1
 								},
 								"sink": {
 									"name": "SURVEY_RESPONSE_ID",
@@ -48,8 +48,8 @@
 							},
 							{
 								"source": {
-									"name": "person",
-									"type": "String"
+									"type": "String",
+									"ordinal": 2
 								},
 								"sink": {
 									"name": "PERSION_ID",
@@ -58,8 +58,8 @@
 							},
 							{
 								"source": {
-									"name": "survey_type",
-									"type": "String"
+									"type": "String",
+									"ordinal": 3
 								},
 								"sink": {
 									"name": "SURVEY_TYPE",
@@ -68,8 +68,8 @@
 							},
 							{
 								"source": {
-									"name": "score",
-									"type": "Int32"
+									"type": "String",
+									"ordinal": 4
 								},
 								"sink": {
 									"name": "SCORE",
@@ -78,8 +78,8 @@
 							},
 							{
 								"source": {
-									"name": "comment",
-									"type": "String"
+									"type": "String",
+									"ordinal": 5
 								},
 								"sink": {
 									"name": "COMMENT",
@@ -88,8 +88,8 @@
 							},
 							{
 								"source": {
-									"name": "permalink",
-									"type": "String"
+									"type": "String",
+									"ordinal": 6
 								},
 								"sink": {
 									"name": "PERMALINK",
@@ -98,8 +98,8 @@
 							},
 							{
 								"source": {
-									"name": "created_at",
-									"type": "Int64"
+									"type": "String",
+									"ordinal": 7
 								},
 								"sink": {
 									"name": "CREATED_AT",
@@ -108,8 +108,8 @@
 							},
 							{
 								"source": {
-									"name": "updated_at",
-									"type": "Int64"
+									"type": "String",
+									"ordinal": 8
 								},
 								"sink": {
 									"name": "UPDATED_AT",
@@ -118,8 +118,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties_Ordernumber",
-									"type": "String"
+									"type": "String",
+									"ordinal": 9
 								},
 								"sink": {
 									"name": "PERSON_ORDERNUMBER",
@@ -128,8 +128,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties.utm_source",
-									"type": "String"
+									"type": "String",
+									"ordinal": 10
 								},
 								"sink": {
 									"name": "PERSON_UTM_SOURCE",
@@ -138,8 +138,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties_utm_medium",
-									"type": "String"
+									"type": "String",
+									"ordinal": 11
 								},
 								"sink": {
 									"name": "PERSON_UTM_MEDIUM",
@@ -148,8 +148,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties_kx",
-									"type": "String"
+									"type": "String",
+									"ordinal": 12
 								},
 								"sink": {
 									"name": "PERSON_KX",
@@ -158,8 +158,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties_Delighted_Source",
-									"type": "String"
+									"type": "String",
+									"ordinal": 13
 								},
 								"sink": {
 									"name": "PERSON_DELIGHTED_SOURCE",
@@ -168,8 +168,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties_Delighted_Link_Name",
-									"type": "String"
+									"type": "String",
+									"ordinal": 14
 								},
 								"sink": {
 									"name": "PERSON_DELIGHTED_LINK_NAME",
@@ -178,8 +178,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties_Delighted_Device_Type",
-									"type": "String"
+									"type": "String",
+									"ordinal": 15
 								},
 								"sink": {
 									"name": "PERSON_DELIGHTED_DEVICE_TYPE",
@@ -188,8 +188,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties_Delighted_Operating_System",
-									"type": "String"
+									"type": "String",
+									"ordinal": 16
 								},
 								"sink": {
 									"name": "PERSON_DELIGHTED_OPERATING_SYSTEM",
@@ -198,8 +198,8 @@
 							},
 							{
 								"source": {
-									"name": "person_properties_Delighted_Browser",
-									"type": "String"
+									"type": "String",
+									"ordinal": 17
 								},
 								"sink": {
 									"name": "PERSON_DELIGHTED_BROWSER",
@@ -208,8 +208,8 @@
 							},
 							{
 								"source": {
-									"name": "notes",
-									"type": "String"
+									"type": "String",
+									"ordinal": 18
 								},
 								"sink": {
 									"name": "NOTES",
@@ -218,8 +218,8 @@
 							},
 							{
 								"source": {
-									"name": "tags",
-									"type": "String"
+									"type": "String",
+									"ordinal": 19
 								},
 								"sink": {
 									"name": "TAG",
@@ -228,8 +228,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers_id",
-									"type": "String"
+									"type": "String",
+									"ordinal": 20
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_ID",
@@ -238,8 +238,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers_value_email",
-									"type": "String"
+									"type": "String",
+									"ordinal": 21
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_EMAIL",
@@ -248,8 +248,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers.value_free_response",
-									"type": "String"
+									"type": "String",
+									"ordinal": 22
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_FREE_RESPONSE",
@@ -258,8 +258,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers.value_name",
-									"type": "String"
+									"type": "String",
+									"ordinal": 23
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_NAME",
@@ -268,8 +268,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers.value_scale",
-									"type": "String"
+									"type": "String",
+									"ordinal": 24
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_SCALE",
@@ -278,8 +278,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers.value_select_one",
-									"type": "String"
+									"type": "String",
+									"ordinal": 25
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_SELECT_ONE",
@@ -288,8 +288,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers.value_select_many",
-									"type": "String"
+									"type": "String",
+									"ordinal": 26
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_SELECT_MANY",
@@ -298,8 +298,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers.question_id",
-									"type": "String"
+									"type": "String",
+									"ordinal": 27
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_QUESTION_ID",
@@ -308,8 +308,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers.question_type",
-									"type": "String"
+									"type": "String",
+									"ordinal": 28
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_QUESTION_TYPE",
@@ -318,8 +318,8 @@
 							},
 							{
 								"source": {
-									"name": "additional_answers.question.text",
-									"type": "String"
+									"type": "String",
+									"ordinal": 29
 								},
 								"sink": {
 									"name": "ADDITIONAL_ANSWERS_1_QUESTION_TEXT",
