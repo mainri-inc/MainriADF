@@ -14,7 +14,7 @@
 				"container": "mycontainer"
 			},
 			"columnDelimiter": ",",
-			"rowDelimiter": "\r\n",
+			"rowDelimiter": "\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": false,
 			"quoteChar": "\""
