@@ -1,0 +1,350 @@
+{
+	"name": "pipeline_fusedata",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy_to_snowflake",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SURVEY_RESPONSE_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "person",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSION_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "survey_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SURVEY_TYPE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "score",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "SCORE",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "comment",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COMMENT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "permalink",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERMALINK",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "created_at",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "CREATED_AT",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "updated_at",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "UPDATED_AT",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties_Ordernumber",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_ORDERNUMBER",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties.utm_source",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_UTM_SOURCE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties_utm_medium",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_UTM_MEDIUM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties_kx",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_KX",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties_Delighted_Source",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_DELIGHTED_SOURCE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties_Delighted_Link_Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_DELIGHTED_LINK_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties_Delighted_Device_Type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_DELIGHTED_DEVICE_TYPE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties_Delighted_Operating_System",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_DELIGHTED_OPERATING_SYSTEM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "person_properties_Delighted_Browser",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PERSON_DELIGHTED_BROWSER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "notes",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NOTES",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "tags",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TAG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers_value_email",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_EMAIL",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers.value_free_response",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_FREE_RESPONSE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers.value_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers.value_scale",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_SCALE",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers.value_select_one",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_SELECT_ONE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers.value_select_many",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_SELECT_MANY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers.question_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_QUESTION_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers.question_type",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_QUESTION_TYPE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "additional_answers.question.text",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDITIONAL_ANSWERS_1_QUESTION_TEXT",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "fusedata_survey_respons",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "fusedataSnowflakeTable",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-01-17T04:27:06Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

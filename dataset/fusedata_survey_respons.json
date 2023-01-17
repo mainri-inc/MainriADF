@@ -1,0 +1,142 @@
+{
+	"name": "fusedata_survey_respons",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_SAS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "NPS_Survey_Response.csv",
+				"container": "mycontainer"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\r\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "person",
+				"type": "String"
+			},
+			{
+				"name": "survey_type",
+				"type": "String"
+			},
+			{
+				"name": "score",
+				"type": "String"
+			},
+			{
+				"name": "comment",
+				"type": "String"
+			},
+			{
+				"name": "permalink",
+				"type": "String"
+			},
+			{
+				"name": "created_at",
+				"type": "String"
+			},
+			{
+				"name": "updated_at",
+				"type": "String"
+			},
+			{
+				"name": "person_properties_Ordernumber",
+				"type": "String"
+			},
+			{
+				"name": "person_properties.utm_source",
+				"type": "String"
+			},
+			{
+				"name": "person_properties_utm_medium",
+				"type": "String"
+			},
+			{
+				"name": "person_properties_kx",
+				"type": "String"
+			},
+			{
+				"name": "person_properties_Delighted_Source",
+				"type": "String"
+			},
+			{
+				"name": "person_properties_Delighted_Link_Name",
+				"type": "String"
+			},
+			{
+				"name": "person_properties_Delighted_Device_Type",
+				"type": "String"
+			},
+			{
+				"name": "person_properties_Delighted_Operating_System",
+				"type": "String"
+			},
+			{
+				"name": "person_properties_Delighted_Browser",
+				"type": "String"
+			},
+			{
+				"name": "notes",
+				"type": "String"
+			},
+			{
+				"name": "tags",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers_id",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers_value_email",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers.value_free_response",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers.value_name",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers.value_scale",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers.value_select_one",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers.value_select_many",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers.question_id",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers.question_type",
+				"type": "String"
+			},
+			{
+				"name": "additional_answers.question.text",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

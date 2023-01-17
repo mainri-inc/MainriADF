@@ -1,0 +1,134 @@
+{
+	"name": "ds_dummy_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ds_dummy_json.json",
+				"container": "mycontainer"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"person": {
+					"type": "string"
+				},
+				"survey_type": {
+					"type": "string"
+				},
+				"score": {
+					"type": "integer"
+				},
+				"comment": {
+					"type": "string"
+				},
+				"permalink": {
+					"type": "string"
+				},
+				"created_at": {
+					"type": "integer"
+				},
+				"updated_at": {
+					"type": "integer"
+				},
+				"person_properties": {
+					"type": "object",
+					"properties": {
+						"Ordernumber": {
+							"type": "string"
+						},
+						"utm_source": {
+							"type": "string"
+						},
+						"utm_medium": {
+							"type": "string"
+						},
+						"_kx": {
+							"type": "string"
+						},
+						"Delighted Source": {
+							"type": "string"
+						},
+						"Delighted Link Name": {
+							"type": "string"
+						},
+						"Delighted Device Type": {
+							"type": "string"
+						},
+						"Delighted Operating System": {
+							"type": "string"
+						},
+						"Delighted Browser": {
+							"type": "string"
+						}
+					}
+				},
+				"notes": {
+					"type": "array"
+				},
+				"tags": {
+					"type": "array"
+				},
+				"additional_answers": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"value": {
+								"type": "object",
+								"properties": {
+									"email": {
+										"type": "null"
+									},
+									"free_response": {
+										"type": "null"
+									},
+									"name": {
+										"type": "null"
+									},
+									"scale": {
+										"type": "integer"
+									},
+									"select_one": {
+										"type": "null"
+									},
+									"select_many": {
+										"type": "null"
+									}
+								}
+							},
+							"question": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"type": {
+										"type": "string"
+									},
+									"text": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

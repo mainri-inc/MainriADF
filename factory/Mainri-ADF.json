@@ -1,0 +1,9 @@
+{
+	"name": "Mainri-ADF",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9069761a-16eb-4bf3-be22-8836fe382b4a",
+		"tenantId": "b4e0dd60-8ef5-4e7d-b911-0bd199ec4b8e"
+	}
+}

@@ -1,0 +1,373 @@
+{
+	"name": "fusedataSnowflakeTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "fusedata_SNOWFLAKE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "SURVEY_RESPONSE_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "PERSION_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "SURVEY_TYPE",
+				"type": "VARCHAR",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "SCORE",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "COMMENT",
+				"type": "VARCHAR",
+				"precision": 160,
+				"scale": 0
+			},
+			{
+				"name": "PERMALINK",
+				"type": "VARCHAR",
+				"precision": 244,
+				"scale": 0
+			},
+			{
+				"name": "CREATED_AT",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "UPDATED_AT",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_ORDERNUMBER",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_UTM_SOURCE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_UTM_MEDIUM",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_KX",
+				"type": "VARCHAR",
+				"precision": 244,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_DELIGHTED_SOURCE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_DELIGHTED_LINK_NAME",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_DELIGHTED_DEVICE_TYPE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_DELIGHTED_OPERATING_SYSTEM",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "PERSON_DELIGHTED_BROWSER",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "NOTES",
+				"type": "VARCHAR",
+				"precision": 64,
+				"scale": 0
+			},
+			{
+				"name": "TAG",
+				"type": "VARCHAR",
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_EMAIL",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_FREE_RESPONSE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_NAME",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_SCALE",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_SELECT_ONE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_SELECT_MANY",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_QUESTION_ID",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_QUESTION_TYPE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_1_QUESTION_TEXT",
+				"type": "VARCHAR",
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_EMAIL",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_FREE_RESPONSE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_NAME",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_SCALE",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_SELECT_ONE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_SELECT_MANY",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_QUESTION_ID",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_QUESTION_TYPE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_2_QUESTION_TEXT",
+				"type": "VARCHAR",
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_EMAIL",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_FREE_RESPONSE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_NAME",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_SCALE",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_SELECT_ONE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_SELECT_MANY",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_QUESTION_ID",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_QUESTION_TYPE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_3_QUESTION_TEXT",
+				"type": "VARCHAR",
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_EMAIL",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_FREE_RESPONSE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_NAME",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_SCALE",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_SELECT_ONE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_SELECT_MANY",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_QUESTION_ID",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_QUESTION_TYPE",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "ADDITIONAL_ANSWERS_4_QUESTION_TEXT",
+				"type": "VARCHAR",
+				"scale": 0
+			},
+			{
+				"name": "_NPS_SURVEY_RESPONSE_STAGING_UPLOAD_DATE",
+				"type": "TIMESTAMP_NTZ",
+				"precision": 29,
+				"scale": 9
+			}
+		],
+		"typeProperties": {
+			"schema": "STAGING",
+			"table": "NPS_SURVEY_RESPONSE"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
