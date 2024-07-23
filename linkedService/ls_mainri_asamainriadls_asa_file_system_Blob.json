@@ -1,0 +1,11 @@
+{
+	"name": "ls_mainri_asamainriadls_asa_file_system_Blob",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://asamainriadls.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}
