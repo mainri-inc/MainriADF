@@ -1,15 +1,18 @@
 {
-	"name": "DelimitedText1",
+	"name": "DelimitedText2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "IO_HttpServer1",
+			"referenceName": "ls_mainri_asamainriadls_asa_file_system_Blob",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "HttpServerLocation"
+				"type": "AzureBlobStorageLocation",
+				"fileName": "out_IO_Ontario_Builds.csv",
+				"folderPath": "out",
+				"container": "mainri-asa-file-system"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
