@@ -1,0 +1,12 @@
+{
+	"name": "IO_OpenData_GC_CA_infrastructure",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://www.infrastructure.gc.ca/alt-format/opendata/project-list-liste-de-projets-bil.csv",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
