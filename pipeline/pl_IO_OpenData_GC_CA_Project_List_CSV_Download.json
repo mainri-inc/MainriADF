@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "download_projects_List_from_Opendata_gc_ca",
+				"name": "download projects_List from Opendata_gc_ca",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
