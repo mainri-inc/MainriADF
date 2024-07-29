@@ -1,18 +1,15 @@
 {
-	"name": "DelimitedText2",
+	"name": "IO_OpenData_GC_CA_Infrastructure",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_mainri_asamainriadls_asa_file_system_Blob",
+			"referenceName": "IO_OpenData_GC_CA_infrastructure",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"fileName": "gc_ca_csv",
-				"folderPath": "out",
-				"container": "mainri-asa-file-system"
+				"type": "HttpServerLocation"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
