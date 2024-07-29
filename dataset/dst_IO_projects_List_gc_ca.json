@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText2",
+	"name": "dst_IO_projects_List_gc_ca",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_mainri_asamainriadls_asa_file_system_Blob",

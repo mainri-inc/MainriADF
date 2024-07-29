@@ -54,7 +54,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText2",
+						"referenceName": "dst_IO_projects_List_gc_ca",
 						"type": "DatasetReference"
 					}
 				]
