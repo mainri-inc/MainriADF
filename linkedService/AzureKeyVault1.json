@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://mainriKeyVault.vault.azure.net/"
+			"baseUrl": "https://mainri-key-vault.vault.azure.net/"
 		}
 	}
 }
