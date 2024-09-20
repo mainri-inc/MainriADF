@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "Copy-full-employee",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -67,7 +67,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"path": {
-								"value": "@concat(\n    'landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
+								"value": "@concat(\n    'bronzeraw/landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
 								"type": "Expression"
 							},
 							"filename": "emp_in_it.csv",
@@ -80,7 +80,7 @@
 				]
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy-full-employee",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -131,7 +131,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"path": {
-								"value": "@concat(\n    'landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
+								"value": "@concat(\n    'bronzeraw/landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
 								"type": "Expression"
 							},
 							"filename": "full_emplyoee.csv",
