@@ -28,10 +28,6 @@
 				"folderPath": {
 					"value": "@dataset().path",
 					"type": "Expression"
-				},
-				"fileSystem": {
-					"value": "@dataset().ds_par_storageAccount",
-					"type": "Expression"
 				}
 			},
 			"columnDelimiter": ",",
