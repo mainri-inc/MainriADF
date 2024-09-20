@@ -11,9 +11,6 @@
 			},
 			"filename": {
 				"type": "string"
-			},
-			"ds_par_storageAccount": {
-				"type": "string"
 			}
 		},
 		"annotations": [],
