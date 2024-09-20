@@ -1,0 +1,82 @@
+{
+	"name": "pl_ingest_raw",
+	"properties": {
+		"activities": [
+			{
+				"name": "ingest src to landing",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_adls_src",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "src_name_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"path": {
+								"value": "@concat(\n    'landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
+								"type": "Expression"
+							},
+							"filename": {
+								"value": "@pipeline().parameters.pl_par_filename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pl_par_filename": {
+				"type": "string",
+				"defaultValue": "name.csv"
+			}
+		},
+		"annotations": []
+	}
+}
