@@ -1,0 +1,10 @@
+{
+	"name": "ls_asamainriadls",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://asamainriadls.dfs.core.windows.net/"
+		}
+	}
+}
