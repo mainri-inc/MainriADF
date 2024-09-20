@@ -11,6 +11,9 @@
 			},
 			"filename": {
 				"type": "string"
+			},
+			"ds_par_storageAccount": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -26,7 +29,10 @@
 					"value": "@dataset().path",
 					"type": "Expression"
 				},
-				"fileSystem": "bronzeraw"
+				"fileSystem": {
+					"value": "@dataset().ds_par_storageAccount",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

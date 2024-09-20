@@ -1,0 +1,159 @@
+{
+	"name": "pl_ingest_from_SqlDB",
+	"properties": {
+		"activities": [
+			{
+				"name": "ingest_Sql_SP_emp_in_IT",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[usp_get_employee_from_dep]",
+						"storedProcedureParameters": {
+							"dep": {
+								"type": "String",
+								"value": "it"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Sql_vw_emp",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_full_emp",
+						"type": "DatasetReference",
+						"parameters": {
+							"path": {
+								"value": "@concat(\n    'landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
+								"type": "Expression"
+							},
+							"filename": "emp_in_it.csv",
+							"ds_par_storageAccount": {
+								"value": "@pipeline().parameters.pl_par_storageaccount",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select * from vw_employee",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Sql_vw_emp",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_full_emp",
+						"type": "DatasetReference",
+						"parameters": {
+							"path": {
+								"value": "@concat(\n    'landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
+								"type": "Expression"
+							},
+							"filename": "full_emplyoee.csv",
+							"ds_par_storageAccount": {
+								"value": "@pipeline().parameters.pl_par_storageaccount",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"fullemployee": {
+				"type": "string",
+				"defaultValue": "fullEmployess.csv"
+			},
+			"pl_par_storageaccount": {
+				"type": "string",
+				"defaultValue": "asamainriadls"
+			}
+		},
+		"annotations": []
+	}
+}
