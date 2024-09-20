@@ -67,10 +67,14 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"path": {
-								"value": "@concat(\n    'bronzeraw/landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
+								"value": "@concat(\n    '/landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
 								"type": "Expression"
 							},
-							"filename": "emp_in_it.csv"
+							"filename": "emp_in_it.csv",
+							"container": {
+								"value": "@pipeline().parameters.pl_par_container",
+								"type": "Expression"
+							}
 						}
 					}
 				]
@@ -126,7 +130,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"path": {
-								"value": "@concat(\n    'bronzeraw/landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
+								"value": "@concat(\n    'landing/transactional/wildforkbiz/historical/v20240101/full'\n    , '/rundate='\n    , formatDateTime(utcNow(), 'yyyy-MM-dd')\n    ,'/'\n\n)",
 								"type": "Expression"
 							},
 							"filename": "full_emplyoee.csv",
