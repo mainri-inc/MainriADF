@@ -11,6 +11,9 @@
 			},
 			"filename": {
 				"type": "string"
+			},
+			"container": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -24,6 +27,10 @@
 				},
 				"folderPath": {
 					"value": "@dataset().path",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().container",
 					"type": "Expression"
 				}
 			},
