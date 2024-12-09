@@ -1,0 +1,32 @@
+{
+	"name": "name_2clo_from_sftp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sftp1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"fileName": "name-2Col.csv",
+				"folderPath": "/info"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "col1",
+				"type": "String"
+			},
+			{
+				"name": "col2",
+				"type": "String"
+			}
+		]
+	}
+}
