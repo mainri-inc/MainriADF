@@ -1,0 +1,24 @@
+{
+	"name": "name_2col_from_FTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_mainri_asamainriadls_asa_file_system_Blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "name_2col",
+				"folderPath": "raw",
+				"container": "mainri-asa-file-system"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
