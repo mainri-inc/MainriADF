@@ -1,0 +1,17 @@
+{
+	"name": "FtpServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FtpServer",
+		"typeProperties": {
+			"host": "ftp.mainri.ca",
+			"port": 21,
+			"enableSsl": false,
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Basic",
+			"userName": "chenerjun",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDk3NDI0N0JBLTA5QUMtNDk2Ni1CQjlFLUYwNkY5ODM2RTgwRl82ZmU5Y2M2Ny1jNWQ1LTQ5MjctYWYyMS05YmE4MzJmYmFmNTIiDQp9"
+		}
+	}
+}
