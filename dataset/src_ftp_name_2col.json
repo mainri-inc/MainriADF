@@ -1,5 +1,5 @@
 {
-	"name": "ftp_name_2col",
+	"name": "src_ftp_name_2col",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "FtpServer1",
