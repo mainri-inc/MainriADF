@@ -1,5 +1,5 @@
 {
-	"name": "name_2col_from_FTP",
+	"name": "tar_name_2col_from_FTP",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_mainri_asamainriadls_asa_file_system_Blob",
