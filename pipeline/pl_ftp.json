@@ -51,13 +51,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ftp_name_2col",
+						"referenceName": "src_ftp_name_2col",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "name_2col_from_FTP",
+						"referenceName": "tar_name_2col_from_FTP",
 						"type": "DatasetReference"
 					}
 				]
