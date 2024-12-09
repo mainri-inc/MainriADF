@@ -1,5 +1,5 @@
 {
-	"name": "name_2clo_from_sftp",
+	"name": "src_name_2clo_from_sftp",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Sftp1",
