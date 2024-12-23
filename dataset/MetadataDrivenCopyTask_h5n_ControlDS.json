@@ -1,0 +1,19 @@
+{
+	"name": "MetadataDrivenCopyTask_h5n_ControlDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase_manual_PWD",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MetadataDrivenCopyTask_h5n_20241223"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "metadata",
+			"table": "MainControlTable_h5n"
+		}
+	}
+}
