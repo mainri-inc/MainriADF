@@ -1,0 +1,21 @@
+{
+	"name": "name_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_asamainriadls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "name_parquet",
+				"folderPath": "raw",
+				"fileSystem": "mainri-asa-file-system"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
