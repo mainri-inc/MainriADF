@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "name_parquet",
+				"fileName": "name_parquet.parquet",
 				"folderPath": "raw",
 				"fileSystem": "mainri-asa-file-system"
 			},
