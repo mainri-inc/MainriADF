@@ -2,7 +2,7 @@
 	"name": "Sql_vw_emp",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase1",
+			"referenceName": "AzureSqlDatabase_manual_PWD",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -33,7 +33,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "vw_employee"
+			"table": "employee"
 		}
 	}
 }
