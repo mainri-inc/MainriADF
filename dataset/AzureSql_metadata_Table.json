@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "AzureSql_metadata_Table",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase_manual_PWD",
