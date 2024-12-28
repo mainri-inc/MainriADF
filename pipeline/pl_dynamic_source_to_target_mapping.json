@@ -170,6 +170,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "SELECT COUNT(*) AS 'amount' FROM Metadata WHERE \n SOURCE_FILENAME = variables('var_sourcename')),\n src_col = variables('var_field_name'))\n)}",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
