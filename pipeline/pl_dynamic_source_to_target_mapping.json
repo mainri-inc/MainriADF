@@ -58,6 +58,7 @@
 			},
 			{
 				"name": "Get Metadata of source",
+				"description": "Get Metadata of source",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -88,34 +89,8 @@
 				}
 			},
 			{
-				"name": "Lookup generate STM planning",
-				"type": "Lookup",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference"
-					}
-				}
-			},
-			{
-				"name": "ForEach1",
-				"description": "retrieve each field's structure ",
+				"name": "ForEach in source fields",
+				"description": "retrieve each field's structure name and type.",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -143,7 +118,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "field_name",
+								"variableName": "var_field_name",
 								"value": {
 									"value": "@item().name",
 									"type": "Expression"
@@ -160,10 +135,47 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "field_type",
+								"variableName": "var_field_type",
 								"value": {
 									"value": "@item().type",
 									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Lookup source field exits or not",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "Set variable name",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "Set variable type",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "AzureSql_metadata_Table",
+									"type": "DatasetReference"
 								}
 							}
 						}
@@ -172,10 +184,16 @@
 			}
 		],
 		"variables": {
-			"field_name": {
+			"var_field_name": {
 				"type": "String"
 			},
-			"field_type": {
+			"var_field_type": {
+				"type": "String"
+			},
+			"var_sourcename": {
+				"type": "String"
+			},
+			"var_mapping_plan": {
 				"type": "String"
 			}
 		},
