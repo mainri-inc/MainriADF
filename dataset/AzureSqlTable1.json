@@ -1,0 +1,65 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase_manual_PWD",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "source_filename",
+				"type": "varchar"
+			},
+			{
+				"name": "src_col",
+				"type": "varchar"
+			},
+			{
+				"name": "src_dataType",
+				"type": "varchar"
+			},
+			{
+				"name": "src_col_createdate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "src_col_activity",
+				"type": "bit"
+			},
+			{
+				"name": "destination_schema",
+				"type": "varchar"
+			},
+			{
+				"name": "destination_table",
+				"type": "varchar"
+			},
+			{
+				"name": "dst_col",
+				"type": "varchar"
+			},
+			{
+				"name": "dst_dataType",
+				"type": "varchar"
+			},
+			{
+				"name": "dst_createdate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "dst_col_activity",
+				"type": "bit"
+			},
+			{
+				"name": "mapping",
+				"type": "varchar"
+			}
+		]
+	}
+}
