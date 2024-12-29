@@ -213,7 +213,7 @@
 				}
 			},
 			{
-				"name": "lkp generate entire ETL mapping plan ",
+				"name": "lkp generate entire ETL mapping plan",
 				"description": "Using the metadata table, generate the complete ETL mapping plan.",
 				"type": "Lookup",
 				"dependsOn": [
@@ -235,6 +235,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select \nconcat(\n'{\"type\": \"TabularTranslator\",\"mappings\": [' \n, string_agg([mapping],',') \n,']}') as [stm]\nfrom [metadata]\nwhere \n[source_filename] = 'name.csv'\nand [src_col_activity] = 1\nand [destination_table] = 'emp'\nand [dst_col_activity] = 1",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
