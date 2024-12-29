@@ -101,7 +101,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata of source",
+						"activity": "save source file name",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -118,7 +118,20 @@
 						{
 							"name": "Lookup source field exits or not",
 							"type": "Lookup",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "save source this field name",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "save source this field data type",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -131,7 +144,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "IF NOT EXISTS (\n      SELECT src_col from metadata \n         WHERE \n         source_filename = '@{activity('Get Metadata of source').output.itemName}'\n            AND     src_col = '@{item().name}'\n            AND     src_col_activity = 1\n   )\nBEGIN\nALTER TABLE emp ADD '@{item().name}' NVARCHAR(50);\n\nINSERT INTO metadata\n(source_filename\n, src_col\n, src_dataType\n, src_col_activity\n, destination_schema\n, destination_table\n, dst_col\n, dst_datType\n, dst__col_activity\n, mapping)\nVALUES\n(\n'@{activity('Get Metadata of source').output.itemName}'\n, '@{item().name}'\n, '@{item().type}'\n, 1\n, 'dbo'\n, 'emp'\n, '@{item().name}'\n, NVARCHAR(50)\n, 1\n, '{\n  \"source\": {\n     \"name\": \"@{item().name}\",\n     \"type\": \"@{item().type}\",\n     \"physicalType\":\"@{item().type}\"\n  },\n  \"sink\": {\n     \"name\": \"@{item().name}\",\n     \"type\": \"@{item().type}\",\n     \"physicalType\":\"nvarchar(50)\"\n  } \n}'\n)\nEND;\n\n\n",
+										"value": "IF NOT EXISTS (\n      SELECT src_col from metadata \n         WHERE \n         source_filename = '@{variables('var_sourcename')}'\n            AND     src_col = '@{variables('var_field_name')}'\n            AND     src_col_activity = 1\n   )\nBEGIN\n  IF NOT EXISTS ( SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '@{variables('var_sourcename')}' \n   AND \n   COLUMN_NAME = '@{variables('var_field_name')}'\n   )\n    ALTER TABLE emp ADD @{item().name} NVARCHAR(50);\nSELECT 'target altered';\nEND\nELSE\nselect 'nothing';",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -140,10 +153,69 @@
 								"dataset": {
 									"referenceName": "AzureSql_metadata_Table",
 									"type": "DatasetReference"
+								},
+								"firstRowOnly": true
+							}
+						},
+						{
+							"name": "save source this field name",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "var_field_name",
+								"value": {
+									"value": "@item().name",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "save source this field data type",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "var_field_type",
+								"value": {
+									"value": "@item().type",
+									"type": "Expression"
 								}
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "save source file name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata of source",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var_sourcename",
+					"value": {
+						"value": "@activity('Get Metadata of source').output.itemName",
+						"type": "Expression"
+					}
 				}
 			}
 		],
