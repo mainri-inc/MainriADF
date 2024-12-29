@@ -7,14 +7,7 @@
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [
-					{
-						"activity": "ForEach in source fields",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -216,6 +209,38 @@
 					"value": {
 						"value": "@activity('Get Metadata of source').output.itemName",
 						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "lkp generate entire ETL mapping plan ",
+				"description": "Using the metadata table, generate the complete ETL mapping plan.",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "ForEach in source fields",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "AzureSql_metadata_Table",
+						"type": "DatasetReference"
 					}
 				}
 			}
