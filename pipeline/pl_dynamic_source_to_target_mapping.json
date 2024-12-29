@@ -244,6 +244,31 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "Save STM",
+				"description": "save the STM to variable \"var_mapping_plan\"",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "lkp generate entire ETL mapping plan",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var_mapping_plan",
+					"value": {
+						"value": "@activity('lkp generate entire ETL mapping plan').output.firstRow",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
