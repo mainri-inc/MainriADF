@@ -7,7 +7,14 @@
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "ForEach in source fields",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -109,56 +116,9 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Set variable name",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"policy": {
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "var_field_name",
-								"value": {
-									"value": "@item().name",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "Set variable type",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"policy": {
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "var_field_type",
-								"value": {
-									"value": "@item().type",
-									"type": "Expression"
-								}
-							}
-						},
-						{
 							"name": "Lookup source field exits or not",
 							"type": "Lookup",
-							"dependsOn": [
-								{
-									"activity": "Set variable name",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "Set variable type",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -171,7 +131,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "SELECT COUNT(*) AS 'amount' FROM Metadata WHERE \n SOURCE_FILENAME = variables('var_sourcename')),\n src_col = variables('var_field_name'))\n)}",
+										"value": "IF NOT EXIST (\n      SELECT src_col from metadata \n         WHERE \n         source_filename = '@{activity('Get Metadata of source').output.itemName}'\n            AND     src_col = '@{item().name}'\n            AND     src_col_activity = 1\n   )\nBEGIN\nALTER TABLE emp ADD '@{item().name}' NVARCHAR(50);\n\nINSERT INTO metadata\n(source_filename\n, src_col\n, src_dataType\n, src_col_activity\n, destination_schema\n, destination_table\n, dst_col\n, dst_datType\n, dst__col_activity\n, mapping)\nVALUES\n(\n'@{activity('Get Metadata of source').output.itemName}'\n, '@{item().name}'\n, '@{item().type}'\n, 1\n, 'dbo'\n, 'emp'\n, '@{item().name}'\n, NVARCHAR(50)\n, 1\n, '{\"source\":{\"name\":\"@{item().name}\",\"type\":\"@{item().type}\",\"physicalType\":\"@{item().type}\"},\n     \"sink\":{\"name\":\"@{item().name}\",\"type\":\"@{item().type}\",\"physicalType\":\"nvarchar(50)\"}}'\n)\nEND;\n\n\n",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
