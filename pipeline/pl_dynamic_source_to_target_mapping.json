@@ -7,7 +7,14 @@
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Save STM",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -235,7 +242,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select \nconcat(\n'{\"type\": \"TabularTranslator\",\"mappings\": [' \n, string_agg([mapping],',') \n,']}') as [stm]\nfrom [metadata]\nwhere \n[source_filename] = 'name.csv'\nand [src_col_activity] = 1\nand [destination_table] = 'emp'\nand [dst_col_activity] = 1",
+						"sqlReaderQuery": {
+							"value": "select \nconcat(\n'{\"type\": \"TabularTranslator\",\n\"mappings\": [' \n, string_agg(mapping,',') \n,']}') as stm\nfrom metadata\nwhere \n[source_filename] = '@{variables('var_field_name')}'\nand [src_col_activity] = 1",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -265,7 +275,7 @@
 				"typeProperties": {
 					"variableName": "var_mapping_plan",
 					"value": {
-						"value": "@activity('lkp generate entire ETL mapping plan').output.firstRow",
+						"value": "@activity('lkp generate entire ETL mapping plan').output.firstRow.stm",
 						"type": "Expression"
 					}
 				}
