@@ -42,12 +42,8 @@
 					},
 					"enableStaging": false,
 					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
+						"value": "@{json(variables('var_mapping_plan'))}",
+						"type": "Expression"
 					}
 				},
 				"inputs": [
@@ -243,7 +239,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select \nconcat(\n'{\"type\": \"TabularTranslator\",\n\"mappings\": [' \n, string_agg(mapping,',') \n,']}') as stm\nfrom metadata\nwhere \n[source_filename] = '@{variables('var_field_name')}'\nand [src_col_activity] = 1",
+							"value": "select \nconcat(\n'{\"type\": \"TabularTranslator\",\n\"mappings\": [' \n, string_agg(mapping,',') \n,']}') as stm\nfrom metadata\nwhere \n[source_filename] = '@{variables('var_sourcename')}' \nand [src_col_activity] = 1",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
