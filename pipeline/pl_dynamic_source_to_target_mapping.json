@@ -40,12 +40,8 @@
 					},
 					"enableStaging": false,
 					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
+						"value": "@json(variables('var_mapping_plan'))",
+						"type": "Expression"
 					}
 				},
 				"inputs": [
