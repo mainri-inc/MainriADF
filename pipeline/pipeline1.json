@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Dynamic copy source to target mapping",
-				"type": "Copy",
+				"name": "lkp SQL Query a CSV file",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -26,83 +26,12 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "name",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "emp_name",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "age",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "emp_age",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "gander",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "gender",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "state",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "state",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
+					"dataset": {
 						"referenceName": "ds_adls_src",
 						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Sql_vw_emp",
-						"type": "DatasetReference"
-					}
-				]
+					},
+					"firstRowOnly": false
+				}
 			}
 		],
 		"annotations": []
