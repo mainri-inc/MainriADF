@@ -29,7 +29,11 @@
 				"type": "String"
 			},
 			{
-				"name": "gander",
+				"name": "gender",
+				"type": "String"
+			},
+			{
+				"name": "state",
 				"type": "String"
 			}
 		]
