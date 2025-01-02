@@ -1,0 +1,30 @@
+{
+	"name": "df_emp",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_adls_src",
+						"type": "DatasetReference"
+					},
+					"name": "srcFactEmp",
+					"description": "Add emp fact as source dataset"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          name as string,",
+				"          age as string,",
+				"          gander as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> srcFactEmp"
+			]
+		}
+	}
+}
