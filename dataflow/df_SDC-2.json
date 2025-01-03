@@ -1,5 +1,5 @@
 {
-	"name": "df_emp",
+	"name": "df_SDC-2",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -9,21 +9,55 @@
 						"referenceName": "ds_adls_src",
 						"type": "DatasetReference"
 					},
-					"name": "srcFactEmp",
-					"description": "Add emp fact as source dataset"
+					"name": "srcDep",
+					"description": "Add dep.csv as source dataset"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SqlServer_dep_table",
+						"type": "DatasetReference"
+					},
+					"name": "sinkToSQLDBdepTable",
+					"description": "Export data to Sql Server dep table"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddIsActiveCol",
+					"description": "Add a column Inactivity "
+				}
+			],
 			"scriptLines": [
 				"source(output(",
-				"          name as string,",
-				"          age as string,",
-				"          gander as string",
+				"          depid as integer,",
+				"          dep as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> srcFactEmp"
+				"     ignoreNoFilesFound: false) ~> srcDep",
+				"srcDep derive(IsActivity = 1) ~> AddIsActiveCol",
+				"AddIsActiveCol sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          surrokey as integer,",
+				"          depID as integer,",
+				"          dep as string,",
+				"          IsActivity as boolean",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          depID = depid,",
+				"          dep,",
+				"          IsActivity",
+				"     )) ~> sinkToSQLDBdepTable"
 			]
 		}
 	}
