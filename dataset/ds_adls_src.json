@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "name.csv",
+				"fileName": "dep.csv",
 				"folderPath": "raw",
 				"fileSystem": "mainri-asa-file-system"
 			},
