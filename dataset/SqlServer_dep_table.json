@@ -24,7 +24,7 @@
 			},
 			{
 				"name": "IsActivity",
-				"type": "bit"
+				"type": "varchar"
 			}
 		],
 		"typeProperties": {
