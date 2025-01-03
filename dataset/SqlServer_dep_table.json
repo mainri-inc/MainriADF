@@ -1,0 +1,35 @@
+{
+	"name": "SqlServer_dep_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SQL_somee",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "surrokey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "depID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dep",
+				"type": "varchar"
+			},
+			{
+				"name": "IsActivity",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dep"
+		}
+	}
+}
