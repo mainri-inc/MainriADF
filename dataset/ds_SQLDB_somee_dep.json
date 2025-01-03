@@ -12,7 +12,26 @@
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "surrokey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "depID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dep",
+				"type": "varchar"
+			},
+			{
+				"name": "IsActivity",
+				"type": "bit"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "dep"
