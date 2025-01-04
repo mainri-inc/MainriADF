@@ -105,7 +105,7 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectNeedColumn",
 				"SelectNeedColumn derive(ActivityStatus = 0) ~> addColumn",
-				"addColumn alterRow(upsertIf(1==1)) ~> alterRow1",
+				"addColumn alterRow(updateIf(1==1)) ~> alterRow1",
 				"AddIsActiveCol sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
