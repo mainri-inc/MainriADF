@@ -29,6 +29,13 @@
 					},
 					"name": "sinkToSQLDBdepTable",
 					"description": "Export data to Sql Server dep table"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_SQLDB_somee_dep",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
 				}
 			],
 			"transformations": [
@@ -47,6 +54,15 @@
 				{
 					"name": "filterNonNull",
 					"description": "filter out the rows which has non-nulls in the source file columns."
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "alterRow1"
 				}
 			],
 			"scriptLines": [
@@ -80,6 +96,15 @@
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lkpNeedUpdate",
 				"lkpNeedUpdate filter(!isNull(depid)) ~> filterNonNull",
+				"filterNonNull select(mapColumn(",
+				"          sql_depID,",
+				"          sql_dep,",
+				"          sql_IsActivity",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 derive(IsActivity = 0) ~> derivedColumn1",
+				"derivedColumn1 alterRow(upsertIf(1==1)) ~> alterRow1",
 				"AddIsActiveCol sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -99,7 +124,28 @@
 				"          depID = depid,",
 				"          dep,",
 				"          IsActivity",
-				"     )) ~> sinkToSQLDBdepTable"
+				"     )) ~> sinkToSQLDBdepTable",
+				"alterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          surrokey as integer,",
+				"          depID as integer,",
+				"          dep as string,",
+				"          IsActivity as boolean",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:false,",
+				"     updateable:true,",
+				"     upsertable:false,",
+				"     keys:['depID'],",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          depID = sql_depID,",
+				"          dep = sql_dep,",
+				"          IsActivity",
+				"     )) ~> sink1"
 			]
 		}
 	}
