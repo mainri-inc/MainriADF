@@ -11,12 +11,20 @@
 					},
 					"name": "srcDep",
 					"description": "Add dep.csv as source dataset"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_SQLDB_somee_dep",
+						"type": "DatasetReference"
+					},
+					"name": "DimensionTableInDatabase",
+					"description": "Import data from Database dimension table dep "
 				}
 			],
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "SqlServer_dep_table",
+						"referenceName": "ds_SQLDB_somee_dep",
 						"type": "DatasetReference"
 					},
 					"name": "sinkToSQLDBdepTable",
@@ -27,6 +35,18 @@
 				{
 					"name": "AddIsActiveCol",
 					"description": "Add a column Inactivity "
+				},
+				{
+					"name": "renamecolumnName",
+					"description": "Renaming Dimension Table In Database "
+				},
+				{
+					"name": "lkpNeedUpdate",
+					"description": "Lookup those need update rows from 'srcDep'"
+				},
+				{
+					"name": "filterNonNull",
+					"description": "filter out the rows which has non-nulls in the source file columns."
 				}
 			],
 			"scriptLines": [
@@ -37,7 +57,29 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> srcDep",
+				"source(output(",
+				"          surrokey as integer,",
+				"          depID as integer,",
+				"          dep as string,",
+				"          IsActivity as boolean",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> DimensionTableInDatabase",
 				"srcDep derive(IsActivity = 1) ~> AddIsActiveCol",
+				"DimensionTableInDatabase select(mapColumn(",
+				"          sql_depID = depID,",
+				"          sql_dep = dep,",
+				"          sql_IsActivity = IsActivity",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> renamecolumnName",
+				"renamecolumnName, srcDep lookup(sql_depID == depid,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lkpNeedUpdate",
+				"lkpNeedUpdate filter(!isNull(depid)) ~> filterNonNull",
 				"AddIsActiveCol sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
