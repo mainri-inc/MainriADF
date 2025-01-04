@@ -35,7 +35,7 @@
 						"referenceName": "ds_SQLDB_somee_dep",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sinkUpdated"
 				}
 			],
 			"transformations": [
@@ -56,10 +56,12 @@
 					"description": "filter out the rows which has non-nulls in the source file columns."
 				},
 				{
-					"name": "select1"
+					"name": "SelectNeedColumn",
+					"description": "select columns that we need."
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "addColumn",
+					"description": "Add a new column, to mark Activity status"
 				},
 				{
 					"name": "alterRow1"
@@ -98,13 +100,12 @@
 				"lkpNeedUpdate filter(!isNull(depid)) ~> filterNonNull",
 				"filterNonNull select(mapColumn(",
 				"          sql_depID,",
-				"          sql_dep,",
-				"          sql_IsActivity",
+				"          sql_dep",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 derive(IsActivity = 0) ~> derivedColumn1",
-				"derivedColumn1 alterRow(upsertIf(1==1)) ~> alterRow1",
+				"     skipDuplicateMapOutputs: true) ~> SelectNeedColumn",
+				"SelectNeedColumn derive(ActivityStatus = 0) ~> addColumn",
+				"addColumn alterRow(upsertIf(1==1)) ~> alterRow1",
 				"AddIsActiveCol sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -120,6 +121,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 2,",
 				"     mapColumn(",
 				"          depID = depid,",
 				"          dep,",
@@ -141,11 +143,12 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
 				"     mapColumn(",
 				"          depID = sql_depID,",
 				"          dep = sql_dep,",
-				"          IsActivity",
-				"     )) ~> sink1"
+				"          IsActivity = ActivityStatus",
+				"     )) ~> sinkUpdated"
 			]
 		}
 	}
