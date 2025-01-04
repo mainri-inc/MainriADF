@@ -1,10 +1,10 @@
 {
-	"name": "pipeline1",
+	"name": "pl_SCD_Type_2",
 	"properties": {
 		"activities": [
 			{
-				"name": "lkp SQL Query a CSV file",
-				"type": "Lookup",
+				"name": "df_SCD_Type_2",
+				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,22 +15,15 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
+					"dataflow": {
+						"referenceName": "df_SDC-2",
+						"type": "DataFlowReference"
 					},
-					"dataset": {
-						"referenceName": "ds_adls_src",
-						"type": "DatasetReference"
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
 					},
-					"firstRowOnly": false
+					"traceLevel": "Fine"
 				}
 			}
 		],
