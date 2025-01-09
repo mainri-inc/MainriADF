@@ -1,0 +1,13 @@
+{
+	"name": "ls_ADLS_fs",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": " dedicated Linked Service for CDC source from ADLS file system/",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=asamainriadls;EndpointSuffix=core.windows.net;",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDk3NDI0N0JBLTA5QUMtNDk2Ni1CQjlFLUYwNkY5ODM2RTgwRl8yMWM4ZmRkZC00MTVlLTQyMzUtYmI0Zi1lNWFlOWYwN2Y3ZGIiDQp9"
+		}
+	}
+}
