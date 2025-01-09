@@ -1,0 +1,102 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "Mainri-ADF"
+		},
+		"AzureBlobStorage_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase_manual_PWD_password": {
+			"value": ""
+		},
+		"FtpServer1_password": {
+			"value": ""
+		},
+		"Sftp1_password": {
+			"value": ""
+		},
+		"fusedata_SNOWFLAKE_connectionString": {
+			"value": ""
+		},
+		"ls_SQL_somee_password": {
+			"value": ""
+		},
+		"AzureBlobStorage_SAS_sasUri": {
+			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://mainri-key-vault.vault.azure.net/"
+		},
+		"AzureKeyVaultDelighted_properties_typeProperties_baseUrl": {
+			"value": "https://mainriKeyVault.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "mainri-sqldb.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "mainri-sqldb"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "ErjunChen"
+		},
+		"AzureSqlDatabase_manual_PWD_properties_typeProperties_server": {
+			"value": "mainri-sqldb.database.windows.net"
+		},
+		"AzureSqlDatabase_manual_PWD_properties_typeProperties_database": {
+			"value": "mainri-sqldb"
+		},
+		"AzureSqlDatabase_manual_PWD_properties_typeProperties_userName": {
+			"value": "erjunchen"
+		},
+		"FtpServer1_properties_typeProperties_host": {
+			"value": "ftp.mainri.ca"
+		},
+		"FtpServer1_properties_typeProperties_userName": {
+			"value": "chenerjun"
+		},
+		"IO_HttpServer1_properties_typeProperties_url": {
+			"value": "https://data.ontario.ca/dataset/aefd72d3-f67c-44ed-b017-b74e7ecd9258/resource/35dc5416-2b86-4a79-b3e6-acbfe004c81a/download/ontbuilds-all-20240711.csv/"
+		},
+		"IO_OpenData_GC_CA_infrastructure_properties_typeProperties_url": {
+			"value": "https://www.infrastructure.gc.ca/alt-format/opendata/project-list-liste-de-projets-bil.csv"
+		},
+		"Sftp1_properties_typeProperties_host": {
+			"value": "sftp.mainri.ca"
+		},
+		"Sftp1_properties_typeProperties_userName": {
+			"value": "chenerjun"
+		},
+		"ls_AzureSqlDatabase_Miainri_properties_typeProperties_server": {
+			"value": "mainri-sqldb.database.windows.net"
+		},
+		"ls_AzureSqlDatabase_Miainri_properties_typeProperties_database": {
+			"value": "mainri-sqldb"
+		},
+		"ls_AzureSqlDatabase_Miainri_properties_typeProperties_userName": {
+			"value": "ErjunChen"
+		},
+		"ls_SQL_somee_properties_typeProperties_server": {
+			"value": "williamSQLDB.mssql.somee.com"
+		},
+		"ls_SQL_somee_properties_typeProperties_database": {
+			"value": "williamSQLDB"
+		},
+		"ls_SQL_somee_properties_typeProperties_userName": {
+			"value": "c13987688411_SQLLogin_1"
+		},
+		"ls_asamainriadls_properties_typeProperties_url": {
+			"value": "https://asamainriadls.dfs.core.windows.net/"
+		},
+		"ls_mainri_asamainriadls_asa_file_system_Blob_properties_typeProperties_serviceEndpoint": {
+			"value": "https://asamainriadls.blob.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
