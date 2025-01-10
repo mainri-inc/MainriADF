@@ -27,6 +27,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fusedata_SNOWFLAKE'"
 		},
+		"lS_CDC_mainri_somee_SQL_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'lS_CDC_mainri_somee_SQL'"
+		},
+		"ls_ADLS_fs_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ADLS_fs'"
+		},
 		"ls_SQL_somee_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_SQL_somee'"
@@ -90,6 +98,18 @@
 		"Sftp1_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "chenerjun"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "williamSQLDB.mssql.somee.com"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "williamSQLDB"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "c13987688411_SQLLogin_1"
 		},
 		"ls_AzureSqlDatabase_Miainri_properties_typeProperties_server": {
 			"type": "string",
@@ -165,6 +185,12 @@
 					"fusedata_SNOWFLAKE_connectionString": {
 						"value": "[parameters('fusedata_SNOWFLAKE_connectionString')]"
 					},
+					"lS_CDC_mainri_somee_SQL_password": {
+						"value": "[parameters('lS_CDC_mainri_somee_SQL_password')]"
+					},
+					"ls_ADLS_fs_connectionString": {
+						"value": "[parameters('ls_ADLS_fs_connectionString')]"
+					},
 					"ls_SQL_somee_password": {
 						"value": "[parameters('ls_SQL_somee_password')]"
 					},
@@ -203,6 +229,15 @@
 					},
 					"Sftp1_properties_typeProperties_userName": {
 						"value": "[parameters('Sftp1_properties_typeProperties_userName')]"
+					},
+					"lS_CDC_mainri_somee_SQL_properties_typeProperties_server": {
+						"value": "[parameters('lS_CDC_mainri_somee_SQL_properties_typeProperties_server')]"
+					},
+					"lS_CDC_mainri_somee_SQL_properties_typeProperties_database": {
+						"value": "[parameters('lS_CDC_mainri_somee_SQL_properties_typeProperties_database')]"
+					},
+					"lS_CDC_mainri_somee_SQL_properties_typeProperties_userName": {
+						"value": "[parameters('lS_CDC_mainri_somee_SQL_properties_typeProperties_userName')]"
 					},
 					"ls_SQL_somee_properties_typeProperties_server": {
 						"value": "[parameters('ls_SQL_somee_properties_typeProperties_server')]"
@@ -245,15 +280,6 @@
 					},
 					"AzureSqlDatabase1_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
-					},
-					"ls_AzureSqlDatabase_Miainri_properties_typeProperties_server": {
-						"value": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_server')]"
-					},
-					"ls_AzureSqlDatabase_Miainri_properties_typeProperties_database": {
-						"value": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_database')]"
-					},
-					"ls_AzureSqlDatabase_Miainri_properties_typeProperties_userName": {
-						"value": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -274,6 +300,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"ls_AzureSqlDatabase_Miainri_properties_typeProperties_server": {
+						"value": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_server')]"
+					},
+					"ls_AzureSqlDatabase_Miainri_properties_typeProperties_database": {
+						"value": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_database')]"
+					},
+					"ls_AzureSqlDatabase_Miainri_properties_typeProperties_userName": {
+						"value": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_userName')]"
 					}
 				}
 			},

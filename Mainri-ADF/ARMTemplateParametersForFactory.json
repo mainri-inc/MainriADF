@@ -20,6 +20,12 @@
 		"fusedata_SNOWFLAKE_connectionString": {
 			"value": ""
 		},
+		"lS_CDC_mainri_somee_SQL_password": {
+			"value": ""
+		},
+		"ls_ADLS_fs_connectionString": {
+			"value": ""
+		},
 		"ls_SQL_somee_password": {
 			"value": ""
 		},
@@ -67,6 +73,15 @@
 		},
 		"Sftp1_properties_typeProperties_userName": {
 			"value": "chenerjun"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_server": {
+			"value": "williamSQLDB.mssql.somee.com"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_database": {
+			"value": "williamSQLDB"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_userName": {
+			"value": "c13987688411_SQLLogin_1"
 		},
 		"ls_AzureSqlDatabase_Miainri_properties_typeProperties_server": {
 			"value": "mainri-sqldb.database.windows.net"

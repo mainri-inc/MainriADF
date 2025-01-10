@@ -27,6 +27,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'fusedata_SNOWFLAKE'"
 		},
+		"lS_CDC_mainri_somee_SQL_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'lS_CDC_mainri_somee_SQL'"
+		},
+		"ls_ADLS_fs_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ADLS_fs'"
+		},
 		"ls_SQL_somee_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_SQL_somee'"
@@ -78,6 +86,18 @@
 		"Sftp1_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "chenerjun"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "williamSQLDB.mssql.somee.com"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "williamSQLDB"
+		},
+		"lS_CDC_mainri_somee_SQL_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "c13987688411_SQLLogin_1"
 		},
 		"ls_SQL_somee_properties_typeProperties_server": {
 			"type": "string",
@@ -300,6 +320,43 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/lS_CDC_mainri_somee_SQL')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "dedicated Linked Service for CDC target SQLDB somee",
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('lS_CDC_mainri_somee_SQL_properties_typeProperties_server')]",
+					"database": "[parameters('lS_CDC_mainri_somee_SQL_properties_typeProperties_database')]",
+					"encrypt": "optional",
+					"trustServerCertificate": true,
+					"authenticationType": "SQL",
+					"userName": "[parameters('lS_CDC_mainri_somee_SQL_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('lS_CDC_mainri_somee_SQL_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_ADLS_fs')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": " dedicated Linked Service for CDC source from ADLS file system/",
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('ls_ADLS_fs_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ls_SQL_somee')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -480,77 +537,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/IO_OpenData_GC_CA_infrastructure')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_h5n_ControlDS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase_manual_PWD",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "MetadataDrivenCopyTask_h5n_20241223"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "metadata",
-					"table": "MainControlTable_h5n"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase_manual_PWD')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_h5n_DestinationDS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_asamainriadls",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"cw_fileName": {
-						"type": "Object"
-					},
-					"cw_folderPath": {
-						"type": "String"
-					},
-					"cw_fileSystem": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "MetadataDrivenCopyTask_h5n_20241223"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@dataset().cw_fileName",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().cw_folderPath",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@dataset().cw_fileSystem",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_asamainriadls')]"
 			]
 		}
 	]

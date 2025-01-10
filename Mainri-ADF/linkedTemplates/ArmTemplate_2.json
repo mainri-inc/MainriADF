@@ -6,12 +6,284 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "Mainri-ADF"
+		},
+		"ls_AzureSqlDatabase_Miainri_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "mainri-sqldb.database.windows.net"
+		},
+		"ls_AzureSqlDatabase_Miainri_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "mainri-sqldb"
+		},
+		"ls_AzureSqlDatabase_Miainri_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "ErjunChen"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_AzureSqlDatabase_Miainri')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_server')]",
+					"database": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('ls_AzureSqlDatabase_Miainri_properties_typeProperties_userName')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "sqlDB-password"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adfcdcFile')]",
+			"type": "Microsoft.DataFactory/factories/adfcdcs",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"SourceConnectionsInfo": [
+					{
+						"SourceEntities": [
+							{
+								"name": "mainri-asa-file-system/CDC",
+								"properties": {
+									"schema": [],
+									"dslConnectorProperties": [
+										{
+											"name": "container",
+											"value": "mainri-asa-file-system"
+										},
+										{
+											"name": "fileSystem",
+											"value": "mainri-asa-file-system"
+										},
+										{
+											"name": "folderPath",
+											"value": "CDC"
+										}
+									]
+								}
+							}
+						],
+						"Connection": {
+							"linkedService": {
+								"referenceName": "ls_asamainriadls",
+								"type": "LinkedServiceReference"
+							},
+							"linkedServiceType": "AzureBlobFS",
+							"type": "linkedservicetype",
+							"isInlineDataset": true,
+							"commonDslConnectorProperties": [
+								{
+									"name": "allowSchemaDrift",
+									"value": true
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": true
+								},
+								{
+									"name": "format",
+									"value": "delimited"
+								},
+								{
+									"name": "dateFormats",
+									"value": [
+										"MM/dd/yyyy",
+										"dd/MM/yyyy",
+										"yyyy/MM/dd",
+										"MM-dd-yyyy",
+										"dd-MM-yyyy",
+										"yyyy-MM-dd",
+										"dd.MM.yyyy",
+										"MM.dd.yyyy",
+										"yyyy.MM.dd"
+									]
+								},
+								{
+									"name": "timestampFormats",
+									"value": [
+										"yyyyMMddHHmm",
+										"yyyyMMdd HHmm",
+										"yyyyMMddHHmmss",
+										"yyyyMMdd HHmmss",
+										"dd-MM-yyyy HH:mm:ss",
+										"dd-MM-yyyy HH:mm",
+										"yyyy-M-d H:m:s",
+										"yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'",
+										"yyyy-M-d\\'T\\'H:m:s\\'Z\\'",
+										"yyyy-M-d\\'T\\'H:m:s",
+										"yyyy-MM-dd\\'T\\'HH:mm:ss",
+										"yyyy-MM-dd HH:mm:ss",
+										"yyyy-MM-dd HH:mm",
+										"yyyy.MM.dd HH:mm:ss",
+										"MM/dd/yyyy HH:mm:ss",
+										"M/d/yyyy H:m:s",
+										"yyyy/MM/dd HH:mm:ss",
+										"yyyy/M/d H:m:s",
+										"dd MMM yyyy HH:mm:ss",
+										"dd MMMM yyyy HH:mm:ss",
+										"d MMM yyyy H:m:s",
+										"d MMMM yyyy H:m:s",
+										"d-M-yyyy H:m:s",
+										"d-M-yyyy H:m",
+										"yyyy-M-d H:m",
+										"MM/dd/yyyy HH:mm",
+										"M/d/yyyy H:m",
+										"yyyy/MM/dd HH:mm",
+										"yyyy/M/d H:m",
+										"dd MMMM yyyy HH:mm",
+										"dd MMM yyyy HH:mm",
+										"d MMMM yyyy H:m",
+										"d MMM yyyy H:m",
+										"MM-dd-yyyy hh:mm:ss a",
+										"MM-dd-yyyy HH:mm:ss",
+										"MM/dd/yyyy hh:mm:ss a",
+										"yyyy.MM.dd hh:mm:ss a",
+										"MM/dd/yyyy",
+										"dd/MM/yyyy",
+										"yyyy/MM/dd",
+										"MM-dd-yyyy",
+										"dd-MM-yyyy",
+										"yyyy-MM-dd",
+										"dd.MM.yyyy",
+										"MM.dd.yyyy",
+										"yyyy.MM.dd"
+									]
+								},
+								{
+									"name": "enableCdc",
+									"value": true
+								},
+								{
+									"name": "skipInitialLoad",
+									"value": true
+								},
+								{
+									"name": "columnNamesAsHeader",
+									"value": true
+								},
+								{
+									"name": "columnDelimiter",
+									"value": ","
+								},
+								{
+									"name": "quoteChar",
+									"value": "\\\""
+								},
+								{
+									"name": "escapeChar",
+									"value": "\\\\"
+								}
+							]
+						}
+					}
+				],
+				"TargetConnectionsInfo": [
+					{
+						"TargetEntities": [
+							{
+								"name": "mainri-asa-file-system/out/CDC",
+								"properties": {
+									"schema": [],
+									"dslConnectorProperties": [
+										{
+											"name": "container",
+											"value": "mainri-asa-file-system"
+										},
+										{
+											"name": "fileSystem",
+											"value": "mainri-asa-file-system"
+										},
+										{
+											"name": "folderPath",
+											"value": "out/CDC"
+										}
+									]
+								}
+							}
+						],
+						"Connection": {
+							"linkedService": {
+								"referenceName": "ls_asamainriadls",
+								"type": "LinkedServiceReference"
+							},
+							"linkedServiceType": "AzureBlobFS",
+							"type": "linkedservicetype",
+							"isInlineDataset": true,
+							"commonDslConnectorProperties": [
+								{
+									"name": "allowSchemaDrift",
+									"value": true
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": true
+								},
+								{
+									"name": "format",
+									"value": "delimited"
+								},
+								{
+									"name": "columnNamesAsHeader",
+									"value": true
+								},
+								{
+									"name": "columnDelimiter",
+									"value": ","
+								},
+								{
+									"name": "escapeChar",
+									"value": "\\\\"
+								},
+								{
+									"name": "quoteChar",
+									"value": "\\\""
+								}
+							]
+						},
+						"DataMapperMappings": [
+							{
+								"targetEntityName": "mainri-asa-file-system/out/CDC",
+								"sourceEntityName": "mainri-asa-file-system/CDC",
+								"sourceConnectionReference": {
+									"connectionName": "ls_asamainriadls",
+									"type": "linkedservicetype"
+								},
+								"attributeMappingInfo": {
+									"attributeMappings": []
+								}
+							}
+						],
+						"Relationships": []
+					}
+				],
+				"Policy": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 1
+					},
+					"mode": "Microbatch"
+				},
+				"status": "Stopped",
+				"allowVNetOverride": false
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/adfcdcadls')]",
 			"type": "Microsoft.DataFactory/factories/adfcdcs",
@@ -228,6 +500,339 @@
 								},
 								"attributeMappingInfo": {
 									"attributeMappings": []
+								}
+							}
+						],
+						"Relationships": []
+					}
+				],
+				"Policy": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 1
+					},
+					"mode": "Microbatch"
+				},
+				"status": "Starting",
+				"allowVNetOverride": false
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adfcdcADLS2SQLDB')]",
+			"type": "Microsoft.DataFactory/factories/adfcdcs",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"SourceConnectionsInfo": [
+					{
+						"SourceEntities": [
+							{
+								"name": "mainri-asa-file-system/CDC",
+								"properties": {
+									"schema": [
+										{
+											"name": "depid",
+											"dataType": "short"
+										},
+										{
+											"name": "dep",
+											"dataType": "string"
+										}
+									],
+									"dslConnectorProperties": [
+										{
+											"name": "container",
+											"value": "mainri-asa-file-system"
+										},
+										{
+											"name": "fileSystem",
+											"value": "mainri-asa-file-system"
+										},
+										{
+											"name": "folderPath",
+											"value": "CDC"
+										},
+										{
+											"name": "allowSchemaDrift",
+											"value": false
+										},
+										{
+											"name": "inferDriftedColumnTypes",
+											"value": false
+										}
+									]
+								}
+							}
+						],
+						"Connection": {
+							"linkedService": {
+								"referenceName": "ls_ADLS_fs",
+								"type": "LinkedServiceReference"
+							},
+							"linkedServiceType": "AzureBlobStorage",
+							"type": "linkedservicetype",
+							"isInlineDataset": true,
+							"commonDslConnectorProperties": [
+								{
+									"name": "allowSchemaDrift",
+									"value": true
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": true
+								},
+								{
+									"name": "format",
+									"value": "delimited"
+								},
+								{
+									"name": "dateFormats",
+									"value": [
+										"MM/dd/yyyy",
+										"dd/MM/yyyy",
+										"yyyy/MM/dd",
+										"MM-dd-yyyy",
+										"dd-MM-yyyy",
+										"yyyy-MM-dd",
+										"dd.MM.yyyy",
+										"MM.dd.yyyy",
+										"yyyy.MM.dd"
+									]
+								},
+								{
+									"name": "timestampFormats",
+									"value": [
+										"yyyyMMddHHmm",
+										"yyyyMMdd HHmm",
+										"yyyyMMddHHmmss",
+										"yyyyMMdd HHmmss",
+										"dd-MM-yyyy HH:mm:ss",
+										"dd-MM-yyyy HH:mm",
+										"yyyy-M-d H:m:s",
+										"yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'",
+										"yyyy-M-d\\'T\\'H:m:s\\'Z\\'",
+										"yyyy-M-d\\'T\\'H:m:s",
+										"yyyy-MM-dd\\'T\\'HH:mm:ss",
+										"yyyy-MM-dd HH:mm:ss",
+										"yyyy-MM-dd HH:mm",
+										"yyyy.MM.dd HH:mm:ss",
+										"MM/dd/yyyy HH:mm:ss",
+										"M/d/yyyy H:m:s",
+										"yyyy/MM/dd HH:mm:ss",
+										"yyyy/M/d H:m:s",
+										"dd MMM yyyy HH:mm:ss",
+										"dd MMMM yyyy HH:mm:ss",
+										"d MMM yyyy H:m:s",
+										"d MMMM yyyy H:m:s",
+										"d-M-yyyy H:m:s",
+										"d-M-yyyy H:m",
+										"yyyy-M-d H:m",
+										"MM/dd/yyyy HH:mm",
+										"M/d/yyyy H:m",
+										"yyyy/MM/dd HH:mm",
+										"yyyy/M/d H:m",
+										"dd MMMM yyyy HH:mm",
+										"dd MMM yyyy HH:mm",
+										"d MMMM yyyy H:m",
+										"d MMM yyyy H:m",
+										"MM-dd-yyyy hh:mm:ss a",
+										"MM-dd-yyyy HH:mm:ss",
+										"MM/dd/yyyy hh:mm:ss a",
+										"yyyy.MM.dd hh:mm:ss a",
+										"MM/dd/yyyy",
+										"dd/MM/yyyy",
+										"yyyy/MM/dd",
+										"MM-dd-yyyy",
+										"dd-MM-yyyy",
+										"yyyy-MM-dd",
+										"dd.MM.yyyy",
+										"MM.dd.yyyy",
+										"yyyy.MM.dd"
+									]
+								},
+								{
+									"name": "enableCdc",
+									"value": true
+								},
+								{
+									"name": "skipInitialLoad",
+									"value": true
+								},
+								{
+									"name": "columnNamesAsHeader",
+									"value": true
+								},
+								{
+									"name": "columnDelimiter",
+									"value": ","
+								},
+								{
+									"name": "quoteChar",
+									"value": "\\\""
+								},
+								{
+									"name": "escapeChar",
+									"value": "\\\\"
+								}
+							]
+						}
+					}
+				],
+				"TargetConnectionsInfo": [
+					{
+						"TargetEntities": [
+							{
+								"name": "dbo.depdw",
+								"properties": {
+									"schema": [
+										{
+											"name": "id",
+											"dataType": "long"
+										},
+										{
+											"name": "dep",
+											"dataType": "string"
+										}
+									],
+									"dslConnectorProperties": [
+										{
+											"name": "schemaName",
+											"value": "dbo"
+										},
+										{
+											"name": "tableName",
+											"value": "depdw"
+										},
+										{
+											"name": "deletable",
+											"value": true
+										},
+										{
+											"name": "updateable",
+											"value": true
+										},
+										{
+											"name": "upsertable",
+											"value": true
+										},
+										{
+											"name": "defaultToUpsert",
+											"value": true
+										},
+										{
+											"name": "allowSchemaDrift",
+											"value": false
+										},
+										{
+											"name": "inferDriftedColumnTypes",
+											"value": false
+										},
+										{
+											"name": "keys",
+											"value": [
+												"id"
+											]
+										}
+									]
+								}
+							}
+						],
+						"Connection": {
+							"linkedService": {
+								"referenceName": "lS_CDC_mainri_somee_SQL",
+								"type": "LinkedServiceReference"
+							},
+							"linkedServiceType": "AzureSqlDatabase",
+							"type": "linkedservicetype",
+							"isInlineDataset": true,
+							"commonDslConnectorProperties": [
+								{
+									"name": "allowSchemaDrift",
+									"value": true
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": true
+								},
+								{
+									"name": "format",
+									"value": "table"
+								},
+								{
+									"name": "store",
+									"value": "sqlserver"
+								},
+								{
+									"name": "databaseType",
+									"value": "databaseType"
+								},
+								{
+									"name": "database",
+									"value": "database"
+								},
+								{
+									"name": "deletable",
+									"value": false
+								},
+								{
+									"name": "insertable",
+									"value": true
+								},
+								{
+									"name": "updateable",
+									"value": false
+								},
+								{
+									"name": "upsertable",
+									"value": false
+								},
+								{
+									"name": "skipDuplicateMapInputs",
+									"value": true
+								},
+								{
+									"name": "skipDuplicateMapOutputs",
+									"value": true
+								}
+							]
+						},
+						"DataMapperMappings": [
+							{
+								"targetEntityName": "dbo.depdw",
+								"sourceEntityName": "mainri-asa-file-system/CDC",
+								"sourceConnectionReference": {
+									"connectionName": "ls_ADLS_fs",
+									"type": "linkedservicetype"
+								},
+								"attributeMappingInfo": {
+									"attributeMappings": [
+										{
+											"name": "dep",
+											"type": "Direct",
+											"functionName": "",
+											"attributeReference": {
+												"name": "dep",
+												"entity": "mainri-asa-file-system/CDC",
+												"entityConnectionReference": {
+													"connectionName": "ls_ADLS_fs",
+													"type": "linkedservicetype"
+												}
+											}
+										},
+										{
+											"name": "id",
+											"type": "Direct",
+											"functionName": "",
+											"attributeReference": {
+												"name": "depid",
+												"entity": "mainri-asa-file-system/CDC",
+												"entityConnectionReference": {
+													"connectionName": "ls_ADLS_fs",
+													"type": "linkedservicetype"
+												}
+											}
+										}
+									]
 								}
 							}
 						],
