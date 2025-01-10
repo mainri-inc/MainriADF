@@ -202,19 +202,7 @@
 						}
 					]
 				},
-				"DataMapperMappings": [
-					{
-						"targetEntityName": "mainri-asa-file-system/out/CDC",
-						"sourceEntityName": "mainri-asa-file-system/CDC",
-						"sourceConnectionReference": {
-							"connectionName": "ls_mainri_asamainriadls_asa_file_system_Blob",
-							"type": "linkedservicetype"
-						},
-						"attributeMappingInfo": {
-							"attributeMappings": []
-						}
-					}
-				],
+				"DataMapperMappings": [],
 				"Relationships": []
 			}
 		],
@@ -225,7 +213,7 @@
 			},
 			"mode": "Microbatch"
 		},
-		"status": "Starting",
+		"status": "Stopped",
 		"allowVNetOverride": false
 	}
 }
