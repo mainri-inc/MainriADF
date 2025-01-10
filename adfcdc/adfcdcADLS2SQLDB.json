@@ -7,7 +7,16 @@
 					{
 						"name": "mainri-asa-file-system/CDC",
 						"properties": {
-							"schema": [],
+							"schema": [
+								{
+									"name": "depid",
+									"dataType": "short"
+								},
+								{
+									"name": "dep",
+									"dataType": "string"
+								}
+							],
 							"dslConnectorProperties": [
 								{
 									"name": "container",
@@ -20,6 +29,14 @@
 								{
 									"name": "folderPath",
 									"value": "CDC"
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
 								}
 							]
 						}
@@ -145,7 +162,16 @@
 					{
 						"name": "dbo.depdw",
 						"properties": {
-							"schema": [],
+							"schema": [
+								{
+									"name": "id",
+									"dataType": "long"
+								},
+								{
+									"name": "dep",
+									"dataType": "string"
+								}
+							],
 							"dslConnectorProperties": [
 								{
 									"name": "schemaName",
@@ -156,8 +182,34 @@
 									"value": "depdw"
 								},
 								{
+									"name": "deletable",
+									"value": true
+								},
+								{
+									"name": "updateable",
+									"value": true
+								},
+								{
+									"name": "upsertable",
+									"value": true
+								},
+								{
 									"name": "defaultToUpsert",
+									"value": true
+								},
+								{
+									"name": "allowSchemaDrift",
 									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
+								},
+								{
+									"name": "keys",
+									"value": [
+										"id"
+									]
 								}
 							]
 						}
@@ -231,7 +283,34 @@
 							"type": "linkedservicetype"
 						},
 						"attributeMappingInfo": {
-							"attributeMappings": []
+							"attributeMappings": [
+								{
+									"name": "dep",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "dep",
+										"entity": "mainri-asa-file-system/CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_ADLS_fs",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "id",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "depid",
+										"entity": "mainri-asa-file-system/CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_ADLS_fs",
+											"type": "linkedservicetype"
+										}
+									}
+								}
+							]
 						}
 					}
 				],
@@ -241,7 +320,7 @@
 		"Policy": {
 			"recurrence": {
 				"frequency": "Minute",
-				"interval": 15
+				"interval": 1
 			},
 			"mode": "Microbatch"
 		},
