@@ -1,5 +1,5 @@
 {
-	"name": "dataflow_raw_out",
+	"name": "dataflow_csv_raw_out",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
