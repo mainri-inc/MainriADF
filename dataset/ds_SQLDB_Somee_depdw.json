@@ -1,0 +1,26 @@
+{
+	"name": "ds_SQLDB_Somee_depdw",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lS_CDC_mainri_somee_SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "dep",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "depdw"
+		}
+	}
+}

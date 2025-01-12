@@ -3,11 +3,55 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [],
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_adls_src",
+						"type": "DatasetReference"
+					},
+					"name": "sourceCSV"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_SQLDB_Somee_depdw",
+						"type": "DatasetReference"
+					},
+					"name": "ReferenceTarget"
+				}
+			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "hashSourceColumn"
+				},
+				{
+					"name": "hashTargetColumn"
+				},
+				{
+					"name": "exists1"
+				}
+			],
 			"scriptLines": [
-				""
+				"source(output(",
+				"          depid as string,",
+				"          dep as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceCSV",
+				"source(output(",
+				"          id as long,",
+				"          dep as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> ReferenceTarget",
+				"sourceCSV derive(hashSrcCol = sha2(256, columns())) ~> hashSourceColumn",
+				"ReferenceTarget derive(hashTarCol = sha2(256, columns())) ~> hashTargetColumn",
+				"hashSourceColumn, hashTargetColumn exists(hashSrcCol == hashTarCol,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1"
 			]
 		}
 	}
