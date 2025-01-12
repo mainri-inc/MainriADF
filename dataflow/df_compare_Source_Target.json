@@ -29,6 +29,9 @@
 				},
 				{
 					"name": "exists1"
+				},
+				{
+					"name": "cast1"
 				}
 			],
 			"scriptLines": [
@@ -48,10 +51,14 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> ReferenceTarget",
 				"sourceCSV derive(hashSrcCol = sha2(256, columns())) ~> hashSourceColumn",
-				"ReferenceTarget derive(hashTarCol = sha2(256, columns())) ~> hashTargetColumn",
+				"cast1 derive(hashTarCol = sha2(256, columns())) ~> hashTargetColumn",
 				"hashSourceColumn, hashTargetColumn exists(hashSrcCol == hashTarCol,",
 				"     negate:false,",
-				"     broadcast: 'auto')~> exists1"
+				"     broadcast: 'auto')~> exists1",
+				"ReferenceTarget cast(output(",
+				"          id as string",
+				"     ),",
+				"     errors: true) ~> cast1"
 			]
 		}
 	}
