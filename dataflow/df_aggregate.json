@@ -3,30 +3,13 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [
-				{
-					"dataset": {
-						"referenceName": "ds_SQLDB_Somee_X_Table",
-						"type": "DatasetReference"
-					},
-					"name": "sourceSomeeSQLDBSales"
-				}
-			],
+			"sources": [],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "aggregate1"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"parameters{",
 				"     df_para_sqldb_Tablename as string",
-				"}",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> sourceSomeeSQLDBSales",
-				"sourceSomeeSQLDBSales aggregate() ~> aggregate1"
+				"}"
 			]
 		}
 	}
