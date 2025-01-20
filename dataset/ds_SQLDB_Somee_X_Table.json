@@ -1,0 +1,17 @@
+{
+	"name": "ds_SQLDB_Somee_X_Table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SQL_somee",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
