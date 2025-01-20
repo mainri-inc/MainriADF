@@ -1,0 +1,30 @@
+{
+	"name": "df_aggregate",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_SQLDB_Somee_X_Table",
+						"type": "DatasetReference"
+					},
+					"name": "sourceSomeeSQLDBSales"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourceSomeeSQLDBSales",
+				"sourceSomeeSQLDBSales aggregate() ~> aggregate1"
+			]
+		}
+	}
+}
