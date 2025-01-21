@@ -25,6 +25,13 @@
 							"sink1": {
 								"tablename": "agg_sold"
 							}
+						},
+						"linkedServiceParameters": {
+							"sink1": {
+								"schemaLinkedService": {
+									"tablename": "agg_sold"
+								}
+							}
 						}
 					},
 					"compute": {
