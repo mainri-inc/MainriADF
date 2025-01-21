@@ -27,9 +27,6 @@
 				}
 			],
 			"scriptLines": [
-				"parameters{",
-				"     df_para_sqldb_Tablename as string",
-				"}",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
